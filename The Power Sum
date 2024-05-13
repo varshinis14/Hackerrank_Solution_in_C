@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+
+void recursive(int val, int p, int i, int max, int total, int *count)
+{
+    int new_total = total + pow(i,p);
+
+    if(new_total > val)
+        return;
+    if(new_total == val)
+    {
+        *count += 1;
+        return;
+    }
+    if(i > max)
+        return;
+    int j;
+    for(j = i+1; j <= max; j++)
+    {
+        recursive(val, p, j, max, new_total, count);
+    }
+    return;
+}
+
+int nbr_of_poss(int val, int p)
+{
+    int max = sqrt(val);
+    int count = 0;
+    recursive(val, p, 0, max, 0, &count);
+    return count;
+}
+
+int main()
+{
+    int val, p;
+    scanf("%d%d", &val, &p);
+
+    printf("%d", nbr_of_poss(val, p));
+    return 0;
+}
