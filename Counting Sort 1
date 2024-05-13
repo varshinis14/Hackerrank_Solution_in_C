@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX_VALUE 100
+int* countingSort(int arr[], int n) {
+ int* frequency = (int*)calloc(MAX_VALUE, sizeof(int));
+ for (int i = 0; i < n; i++) {
+ frequency[arr[i]]++;
+ }
+ return frequency;
+}
+int main() {
+ int n;
+ scanf("%d", &n);
+ int arr[n];
+ for (int i = 0; i < n; i++) {
+ scanf("%d", &arr[i]);
+ }
+ int* frequency = countingSort(arr, n);
+ for (int i = 0; i < MAX_VALUE; i++) {
+ printf("%d ", frequency[i]);
+ }
+ printf("\n");
+ free(frequency);
+ return 0;
+}
